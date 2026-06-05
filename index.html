@@ -278,7 +278,7 @@
       backdrop-filter: blur(18px);
       transform: translate(-50%, -50%) scale(0.6) rotate(var(--rot, 0deg));
       opacity: 0;
-      animation: noteIn 1700ms cubic-bezier(0.18, 0.88, 0.22, 1) forwards;
+      animation: noteIn 2600ms cubic-bezier(0.18, 0.88, 0.22, 1) forwards;
     }
 
     .note::before {
@@ -1288,7 +1288,7 @@ const driftY = -60 - Math.random() * 120;
           addNote(blessing, index);
           if (index % 2 === 0) chime(index + 1);
           burst(index % 2 ? 12 : 18, 0.46 + Math.random() * 0.1, 0.6);
-        }, 420 + index * 260));
+        }, 420 + index * 450));
       });
 
       timeouts.push(window.setTimeout(() => {
@@ -1297,7 +1297,7 @@ const driftY = -60 - Math.random() * 120;
         chime(14);
         buzz([25, 45, 25]);
         burst(82, 0.56, 0.86);
-      }, 420 + blessings.length * 260 + 560));
+      }, 420 + blessings.length * 450 + 1000));
     }
 
     function revealFinale() {
