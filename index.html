@@ -265,7 +265,7 @@
       left: var(--left, 50%);
       top: var(--top, 50%);
       z-index: 2;
-      width: min(64vw, 282px);
+     width: min(72vw, 250px);
       min-height: 80px;
       padding: 18px 18px 17px;
       border: 1px solid rgba(255, 255, 255, 0.78);
@@ -1065,15 +1065,26 @@
       "六月闪光", "青春无畏", "理想靠近", "笔尖生风", "考场顺利", "梦想抵达"
     ];
 
-    const placements = [
-      [25, 25, -7, "#2e78ff"],
-      [72, 26, 6, "#19b7a6"],
-      [47, 35, 4, "#f5b945"],
-      [26, 47, -8, "#ff6f61"],
-      [75, 48, 8, "#7c6cf2"],
-      [50, 57, -4, "#2e78ff"],
-      [27, 69, -9, "#19b7a6"],
-      [73, 70, 7, "#f5b945"]
+   const placements = window.innerWidth < 768
+  ? [
+      [35,18,-5,"#2e78ff"],
+      [65,20,5,"#19b7a6"],
+      [50,30,3,"#f5b945"],
+      [35,42,-6,"#ff6f61"],
+      [65,45,6,"#7c6cf2"],
+      [50,57,-3,"#2e78ff"],
+      [35,70,-5,"#19b7a6"],
+      [65,73,5,"#f5b945"]
+    ]
+  : [
+      [25,25,-7,"#2e78ff"],
+      [72,26,6,"#19b7a6"],
+      [47,35,4,"#f5b945"],
+      [26,47,-8,"#ff6f61"],
+      [75,48,8,"#7c6cf2"],
+      [50,57,-4,"#2e78ff"],
+      [27,69,-9,"#19b7a6"],
+      [73,70,7,"#f5b945"]
     ];
 
     let particles = [];
@@ -1167,10 +1178,17 @@
 const rows = isMobile
   ? [15, 25, 35, 45, 55, 65, 75]
   : [12, 20, 29, 38, 48, 58, 68, 78, 87];
-      const left = columns[index % columns.length] + (Math.random() - 0.5) * 7;
-      const top = rows[(index * 2 + Math.floor(index / columns.length)) % rows.length] + (Math.random() - 0.5) * 5;
-      const driftX = (Math.random() - 0.5) * 120;
-      const driftY = -36 - Math.random() * 80;
+      const margin = window.innerWidth < 768 ? 15 : 10;
+
+const left =
+  margin +
+  Math.random() * (100 - margin * 2);
+
+const top =
+  margin +
+  Math.random() * (100 - margin * 2);
+     const driftX = (Math.random() - 0.5) * 200;
+const driftY = -60 - Math.random() * 120;
       wish.className = "wish";
       wish.textContent = text;
       wish.style.setProperty("--left", `${left}%`);
