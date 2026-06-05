@@ -919,7 +919,26 @@
         min-height: 160px;
       }
     }
+@media (max-width: 768px) {
 
+  .wish{
+    font-size:12px;
+    padding:6px 10px;
+  }
+
+  .note{
+    width:min(80vw,260px);
+  }
+
+  .note strong{
+    font-size:14px;
+  }
+
+  .note span{
+    font-size:12px;
+  }
+
+}
     @media (prefers-reduced-motion: reduce) {
       *,
       *::before,
@@ -1139,8 +1158,15 @@
 
     function addWish(text, index) {
       const wish = document.createElement("span");
-      const columns = [12, 27, 43, 58, 74, 88];
-      const rows = [12, 20, 29, 38, 48, 58, 68, 78, 87];
+     const isMobile = window.innerWidth < 768;
+
+    const columns = isMobile
+  ? [18, 50, 82]
+  : [12, 27, 43, 58, 74, 88];
+
+const rows = isMobile
+  ? [15, 25, 35, 45, 55, 65, 75]
+  : [12, 20, 29, 38, 48, 58, 68, 78, 87];
       const left = columns[index % columns.length] + (Math.random() - 0.5) * 7;
       const top = rows[(index * 2 + Math.floor(index / columns.length)) % rows.length] + (Math.random() - 0.5) * 5;
       const driftX = (Math.random() - 0.5) * 120;
@@ -1272,6 +1298,17 @@
     });
     window.addEventListener("resize", resizeCanvas);
     resizeCanvas();
+    window.addEventListener("load", () => {
+  bgm.load();
+});
+
+document.addEventListener(
+  "WeixinJSBridgeReady",
+  () => {
+    bgm.play().catch(() => {});
+  },
+  false
+);
   </script>
 </body>
 </html>
